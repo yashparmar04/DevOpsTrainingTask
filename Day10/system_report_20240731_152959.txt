@@ -1,0 +1,31 @@
+System Report - Wed Jul 31 03:29:59 PM IST 2024
+====================
+
+CPU Usage: 7.2%
+Memory Usage: 49.1423%
+Disk Usage:
+36% /dev/nvme0n1p1
+6% /dev/nvme0n1p3
+3% /dev/nvme0n1p4
+
+Network Statistics:
+br-0b504 14581 0
+br-1b94f 0 0
+br-417cf 0 0
+br-57135 0 0
+docker0 0 0
+docker_g 0 0
+enp0s31f 0 0
+lo 132810 0
+vethb754 0 0
+wlp0s20f 728784 0
+
+Last 5 Log Entries:
+Jul 31 15:29:58 AHMLPT3361 kubelet.daemon[643641]: I0731 15:29:58.031026  643641 server.go:535] "No api server defined - no events will be sent to API server"
+Jul 31 15:29:58 AHMLPT3361 kubelet.daemon[643641]: I0731 15:29:58.031037  643641 server.go:742] "--cgroups-per-qos enabled, but --cgroup-root was not specified.  defaulting to /"
+Jul 31 15:29:58 AHMLPT3361 kubelet.daemon[643641]: E0731 15:29:58.031093  643641 run.go:74] "command failed" err="failed to run Kubelet: running with swap on is not supported, please disable swap! or set --fail-swap-on flag to false. /proc/swaps contained: [Filename\t\t\t\tType\t\tSize\t\tUsed\t\tPriority /dev/nvme0n1p2                          partition\t15625212\t41728\t\t-2]"
+Jul 31 15:29:58 AHMLPT3361 systemd[1]: snap.kubelet.daemon.service: Main process exited, code=exited, status=1/FAILURE
+Jul 31 15:29:58 AHMLPT3361 systemd[1]: snap.kubelet.daemon.service: Failed with result 'exit-code'.
+
+Apache Status: Running
+MySQL Status: Not Running
