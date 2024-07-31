@@ -1,0 +1,26 @@
+---
+- hosts: webserver
+  become: yes
+ 
+  tasks:
+    - name: Start nginx service with incorrect service name
+      block:
+        - name: wrong name
+          service:
+            name: ngnix
+            state: started
+ 
+      rescue:
+        - name: Handle service start failure
+          debug:
+            msg: "Failed to start. Error "
+ 
+        - name: Start the correct nginx service
+          service:
+            name: nginx
+            state: started
+        
+      always:
+        - name: Always Block
+          debug:
+            msg: "Always going to be executed.."
