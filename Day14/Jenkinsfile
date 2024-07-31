@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/yashparmar04/day14-docker-jenkins.git'
+                git url:'https://github.com/yashparmar04/day14-docker-jenkins.git', branch: 'main'
             }
         }
 
@@ -35,7 +35,7 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    sh 'docker run -d --name java-app -p 8085:8080 ' + env.DOCKERHUB_REPO + ':latest'
+                    sh 'docker run -d --name java-app -p 8081:8080 ' + env.DOCKERHUB_REPO + ':latest'
                 }
             }
         }
