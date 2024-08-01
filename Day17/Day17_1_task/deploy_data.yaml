@@ -25,8 +25,8 @@
 
     - name: create a user in the database
       mysql_user:
-        name: siddh
-        password: siddh1234
+        name: yash
+        password: yash1234
         priv: '*.*:ALL'
         host: '%'
         state: present
@@ -37,14 +37,14 @@
 
     - name: changing mysql configuration file using template
       template:
-        src: "/home/einfochips/Desktop/DevOpsTrainingTask/Day17/templates/my.cnf.j2"
+        src: "/home/einfochips/Desktop/DevOpsTrainingTask/Day17/Day17_1_task/templates/my.cnf.j2"
         dest: "/etc/mysql/my.cnf.j2"
       notify:
         - restart mysql
 
     - name: copy the script
       ansible.builtin.copy:
-        src: "/home/einfochips/Desktop/DevOpsTrainingTask/Day17/scripts/backup.sh"
+        src: "/home/einfochips/Desktop/DevOpsTrainingTask/Day17/Day17_1_task/scripts/backup.sh"
         dest: "/home/ubuntu/backup.sh"
         mode: '777'
 

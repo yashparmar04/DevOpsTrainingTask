@@ -48,7 +48,7 @@
 - hosts: application_server
   become: yes
   vars:
-    app_repo_url: "/home/einfochips/Desktop/DevOpsTrainingTask/Day17/Day17_2/index.html"
+    app_repo_url: "/home/einfochips/Desktop/DevOpsTrainingTask/Day17/Day17_2_task/file/index.html"
     app_directory: "/var/www/html/"
     db_host: "{{ hostvars['db_server']['ansible_host'] }}"
     db_name: "webapp_db"
@@ -96,7 +96,7 @@
 
     - name: Deploy Apache configuration file
       template:
-        src: "apache2.conf.j2"
+        src: "template/apache2.conf.j2"
         dest: "/etc/apache2/apache2.conf"
         owner: root
         group: root

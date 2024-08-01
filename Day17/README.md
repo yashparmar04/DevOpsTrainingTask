@@ -144,7 +144,6 @@ web application stack consisting of:
     > application.
 
 ![](.//media/image9.png)
-
 Output:
 
 ![](.//media/image10.png)
@@ -152,3 +151,5 @@ Output:
 ![](.//media/image11.png)
 
 ![](.//media/image12.png)
+
+![](.//media/image13.png)
