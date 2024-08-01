@@ -149,6 +149,6 @@ Output:
 
 ![](.//media/image10.png)
 
-![](.//media/image11.png){width="7.480555555555555in" height="3.425in"}
+![](.//media/image11.png)
 
 ![](.//media/image12.png)
