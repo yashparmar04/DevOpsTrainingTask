@@ -2,18 +2,20 @@
 - name: Optimize Deployment
   hosts: all
   gather_facts: yes
-
+  become: yes
   tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+      become: yes
+
     - name: Ensure nginx is installed
       apt:
         name: nginx
         state: present
       async: 300
       poll: 0
-      
-    - name: Message
-      debug:
-        msg: "Nginx is installed"
 
     - name: Wait for nginx to be installed
       async_status:
@@ -25,3 +27,18 @@
       with_items:
         - "{{ ansible_job_ids }}"
       when: async_results.ansible_job_id is defined
+
+    - name: Configure Nginx
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+      notify: Restart nginx
+
+  handlers:
+    - name: Restart nginx
+      service:
+        name: nginx
+        state: restarted
