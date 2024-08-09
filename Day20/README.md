@@ -11,8 +11,7 @@
         > demonstrating the ability to automatically update the
         > inventory based on real-time server data.
 
-> ![](.//media/image1.png){width="5.518055555555556in"
-> height="1.90625in"}
+> ![](.//media/image1.png)
 
 2.  **Performance Tuning**
 
@@ -24,8 +23,7 @@
         > performance benchmarks, and documentation detailing changes
         > made for performance improvement.
 
-> ![](.//media/image2.png){width="5.518055555555556in"
-> height="1.90625in"}
+> ![](.//media/image2.png)
 
 3.  **Debugging and Troubleshooting Playbooks**
 
@@ -49,20 +47,14 @@
         > with documentation on the benefits and configurations of these
         > advanced modules.
 
-> ![](.//media/image3.png){width="5.518055555555556in"
-> height="2.1791666666666667in"}
+> ![](.//media/image3.png)
 >
-> ![](.//media/image4.png){width="5.518055555555556in"
-> height="1.9069444444444446in"}
+> ![](.//media/image4.png)
 >
-> ![](.//media/image5.png){width="6.268055555555556in"
-> height="2.453472222222222in"}
+> ![](.//media/image5.png)
 >
-> ![](.//media/image6.png){width="6.268055555555556in"
-> height="1.7194444444444446in"}
+> ![](.//media/image6.png)
 >
-> ![](.//media/image7.png){width="6.268055555555556in"
-> height="0.8208333333333333in"}
+> ![](.//media/image7.png)
 >
-> ![](.//media/image8.png){width="6.268055555555556in"
-> height="3.0076388888888888in"}
+> ![](.//media/image8.png)
