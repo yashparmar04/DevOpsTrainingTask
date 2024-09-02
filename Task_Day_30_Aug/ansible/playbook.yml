@@ -1,0 +1,51 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+        force_apt_get: yes
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Install Kubernetes dependencies
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - apt-transport-https
+        - curl
+
+    - name: Add Kubernetes GPG key
+      command: curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+    - name: Add Kubernetes APT repository
+      command: echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
+
+    - name: Install Kubernetes packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - kubelet
+        - kubeadm
+        - kubectl
+
+    - name: Initialize Kubernetes Master
+      shell: kubeadm init --pod-network-cidr=10.244.0.0/16
+      when: inventory_hostname == 'master'
+
+    - name: Set up kube config for user
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /home/ubuntu/.kube/config
+        remote_src: yes
+      when: inventory_hostname == 'master'
+
+    - name: Install Calico network plugin
+      command: kubectl apply -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
+      when: inventory_hostname == 'master'
