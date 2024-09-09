@@ -1,0 +1,6 @@
+---
+- name: Setup Kubernetes Cluster
+  hosts: mygroup
+  become: false
+  roles:
+    - kubeadm_init

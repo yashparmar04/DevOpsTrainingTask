@@ -1,0 +1,41 @@
+---
+# tasks file for roles/kubeadm_init
+
+- name: Check if Kubernetes is already initialized
+  command: kubectl get nodes --ignore-not-found
+  register: kubectl_get_nodes
+  failed_when: false
+  changed_when: false
+
+- name: Initialize Kubernetes cluster if not already initialized
+  block:
+    - name: Initialize Kubernetes cluster
+      command: kubeadm init --pod-network-cidr=192.168.0.0/16
+      become: true
+
+    - name: Set up kubectl access
+      block:
+        - name: Create .kube directory
+          file:
+            path: "{{ ansible_env.HOME }}/.kube"
+            state: directory
+
+        - name: Copy admin.conf to .kube/config on the remote server
+          command: cp /etc/kubernetes/admin.conf {{ ansible_env.HOME }}/.kube/config
+          args:
+            creates: "{{ ansible_env.HOME }}/.kube/config"
+          become: true
+
+        - name: Set ownership
+          file:
+            path: "{{ ansible_env.HOME }}/.kube/config"
+            owner: "{{ ansible_user_id }}"
+            group: "{{ ansible_user_gid }}"
+            mode: '0600'
+          become: true       
+
+        - name: Apply network add-on (Calico in this case)
+          command: kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+
+  when: kubectl_get_nodes.rc != 0
+
